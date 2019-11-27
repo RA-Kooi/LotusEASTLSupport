@@ -1,0 +1,34 @@
+{
+	"type":"stlib",
+	"unity_build":false,
+	"name":"LotusEASTLSupport",
+	"target":"LotusEASTLSupport",
+	"version":"0.0.0",
+
+	"rpath":["$ORIGIN"],
+
+	"use":["EABase"],
+	"uselib":["EASTLHeaders"],
+
+	"defines":
+	{
+		"base":["BUILDING_LOTUSEA"]
+	},
+
+	"includes":
+	[
+		"./include",
+		"./include/LotusEA"
+	],
+	"export_includes":["./include"],
+	"export_force_includes":
+	[
+		"./include/LotusEA/config.hpp",
+		"./include/LotusEA/polymorphic_allocator.hpp"
+	],
+
+	"sources":
+	[
+		"./sources/polymorphic_allocator.cpp"
+	]
+}
