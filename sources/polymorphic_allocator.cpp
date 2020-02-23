@@ -1,6 +1,7 @@
 #include "polymorphic_allocator.hpp"
 
 #include <cstdlib>
+#include <new>
 
 #include <EABase/eabase.h>
 
@@ -51,7 +52,8 @@ void *PolymorphicAllocator::allocate(
 	uintptr_t const returnAddress =
 		((baseAddress + infoSize + offset) & ~adjustedAlignment) - offset;
 
-	reinterpret_cast<uintptr_t*>(returnAddress - gap)[-1] = baseAddress;
+	uintptr_t const baseAddressStorage = returnAddress - gap - EA_PLATFORM_PTR_SIZE;
+	new (reinterpret_cast<void*>(baseAddressStorage)) uintptr_t(baseAddress);
 
 	return reinterpret_cast<void*>(returnAddress);
 }
