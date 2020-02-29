@@ -22,7 +22,7 @@ struct DefaultDeleter
 	{
 		EASTLAllocatorDefault()->deallocate(pointer, 0);
 	}
-}
+};
 
 namespace Details
 {
